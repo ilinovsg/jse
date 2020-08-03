@@ -55,11 +55,40 @@ public class TaskRepository {
         return null;
     }
 
+    public Task findByProjectIdAndId(final Long projectId, final Long id) {
+        for (final Task task : tasks) {
+            final Long idProject = task.getProjectId();
+            if (idProject == null) continue;;
+            if (!idProject.equals(projectId)) continue;;
+            if (task.getId().equals(id)) return task;
+        }
+        return null;
+    }
+
     public Task removeById(final Long id) {
         final Task task = findById(id);
         if (task == null) return null;
         tasks.remove(task);
         return task;
+    }
+
+    public List<Task> findAllByProjectId(final Long projectId) {
+        final List<Task> result = new ArrayList<>();
+        for (final Task task : findAll()) {
+            final Long idProject = task.getProjectId();
+            if (idProject == null) continue;
+            if (idProject.equals(projectId)) result.add(task);
+        }
+        return result;
+    }
+
+    public Task removeByProjectId(final Long projectId) {
+        for (final Task task : findAll()) {
+            final Long idProject = task.getProjectId();
+            if (idProject == null) continue;
+            if (idProject.equals(projectId)) tasks.remove(task);
+        }
+        return null;
     }
 
     public void clear() {

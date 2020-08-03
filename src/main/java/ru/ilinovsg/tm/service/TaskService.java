@@ -3,6 +3,7 @@ package ru.ilinovsg.tm.service;
 import ru.ilinovsg.tm.repository.TaskRepository;
 import ru.ilinovsg.tm.entity.Task;
 
+import java.util.Collections;
 import java.util.List;
 
 public class TaskService {
@@ -62,4 +63,13 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
+    public Task findByProjectIdAndId(Long projectId, Long id) {
+        if (projectId == null || id == null) return null;
+        return taskRepository.findByProjectIdAndId(projectId, id);
+    }
+
+    public List<Task> findAllByProjectId(Long projectId) {
+        if (projectId == null) return null;
+        return taskRepository.findAllByProjectId(projectId);
+    }
 }

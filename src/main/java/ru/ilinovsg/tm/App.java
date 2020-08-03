@@ -3,9 +3,12 @@ package ru.ilinovsg.tm;
 import ru.ilinovsg.tm.controller.ProjectController;
 import ru.ilinovsg.tm.controller.SystemController;
 import ru.ilinovsg.tm.controller.TaskController;
+import ru.ilinovsg.tm.entity.Project;
+import ru.ilinovsg.tm.entity.Task;
 import ru.ilinovsg.tm.repository.ProjectRepository;
 import ru.ilinovsg.tm.repository.TaskRepository;
 import ru.ilinovsg.tm.service.ProjectService;
+import ru.ilinovsg.tm.service.ProjectTaskService;
 import ru.ilinovsg.tm.service.TaskService;
 
 import java.util.Scanner;
@@ -20,9 +23,11 @@ public class App {
     private final TaskRepository taskRepository = new TaskRepository();
     private final TaskService taskService = new TaskService(taskRepository);
 
+    private final ProjectTaskService projectTaskService = new ProjectTaskService(projectRepository, taskRepository);
+
     private final ProjectController projectController = new ProjectController(projectService);
 
-    private final TaskController taskController = new TaskController(taskService);
+    private final TaskController taskController = new TaskController(taskService, projectTaskService);
 
     private final SystemController systemController = new SystemController();
 
@@ -112,9 +117,29 @@ public class App {
                 return taskController.viewTaskByIndex();
             case TASK_VIEW_BY_NAME:
                 return taskController.viewTaskByName();
+            case TASK_ADD_TO_PROJECT_BY_IDS:
+                return taskController.addTaskToProjectByIds();
+            case TASK_REMOVE_FROM_PROJECT_BY_IDS:
+                return taskController.removeTaskToProjectByIds();
+            case TASK_LIST_BY_PROJECT_ID:
+                return taskController.listTaskByProjectId();
+            case TASK_REMOVE_WITH_PROJECT_BY_ID:
+                return taskController.removeTasksAndProject();
             default:
                 return systemController.displayError();
         }
+    }
+
+    public ProjectService getProjectService() {
+        return projectService;
+    }
+
+    public TaskService getTaskService() {
+        return taskService;
+    }
+
+    public ProjectTaskService getProjectTaskService() {
+        return projectTaskService;
     }
 
 }

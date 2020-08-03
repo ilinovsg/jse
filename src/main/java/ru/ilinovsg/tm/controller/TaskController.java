@@ -1,14 +1,20 @@
 package ru.ilinovsg.tm.controller;
 
 import ru.ilinovsg.tm.entity.Task;
+import ru.ilinovsg.tm.service.ProjectTaskService;
 import ru.ilinovsg.tm.service.TaskService;
+
+import java.util.List;
 
 public class TaskController extends AbstractController{
 
     private final TaskService taskService;
 
-    public TaskController(TaskService taskService) {
+    private final ProjectTaskService projectTaskService;
+
+    public TaskController(TaskService taskService, ProjectTaskService projectTaskService) {
         this.taskService = taskService;
+        this.projectTaskService = projectTaskService;
     }
 
     public int createTask() {
@@ -136,14 +142,63 @@ public class TaskController extends AbstractController{
     }
 
     public int listTask() {
-        System.out.println("[List task]");
         int index = 1;
-        for(final Task task: taskService.findAll()) {
+        System.out.println("[List task]");
+        viewTasks(taskService.findAll());
+        System.out.println("[OK]");
+        return 0;
+    }
+
+    public void viewTasks(final List<Task> tasks) {
+        if (tasks == null || tasks.isEmpty()) return;
+        int index = 1;
+        for(final Task task: tasks) {
             System.out.println(index + "." + task.getId() + " " + task.getName());
             index++;
         }
+
+    }
+
+     public int listTaskByProjectId() {
+         System.out.println("[List task by project id]");
+         System.out.println("[Please, enter project id]");
+         final Long projectId = Long.parseLong(scanner.nextLine());
+         final List<Task> tasks = taskService.findAllByProjectId(projectId);
+         viewTasks(tasks);
+         System.out.println("[OK]");
+         return 0;
+     }
+
+     public int addTaskToProjectByIds() {
+         System.out.println("[Add task to project by ids]");
+         System.out.println("[Please, enter project id]");
+         final Long projectId = Long.parseLong(scanner.nextLine());
+         System.out.println("[Please, enter task id]");
+         final Long taskId = Long.parseLong(scanner.nextLine());
+         projectTaskService.addTaskToProject(projectId, taskId);
+         System.out.println("[OK]");
+         return 0;
+     }
+
+     public int removeTaskToProjectByIds() {
+         System.out.println("[Remove task from project by id]");
+         System.out.println("[Please, enter project id]");
+         final Long projectId = Long.parseLong(scanner.nextLine());
+         System.out.println("[Please, enter task id]");
+         final Long taskId = Long.parseLong(scanner.nextLine());
+         projectTaskService.removeTaskFromProject(projectId, taskId);
+         System.out.println("[OK]");
+         return 0;
+    }
+
+    public int removeTasksAndProject() {
+        System.out.println("[Remove tasks and project by id]");
+        System.out.println("[Please, enter project id]");
+        final Long projectId = Long.parseLong(scanner.nextLine());
+        projectTaskService.removeTasksAndProject(projectId);
         System.out.println("[OK]");
         return 0;
     }
 
 }
+
