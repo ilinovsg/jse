@@ -1,6 +1,5 @@
-package ru.ilinovsg.tm.dao;
+package ru.ilinovsg.tm.repository;
 
-import ru.ilinovsg.tm.entity.Project;
 import ru.ilinovsg.tm.entity.Task;
 
 import java.util.ArrayList;
@@ -8,7 +7,7 @@ import java.util.List;
 
 public class TaskRepository {
 
-    public List<Task> tasks = new ArrayList<>();
+    private final List<Task> tasks = new ArrayList<>();
 
     public Task create(final String name) {
         final Task task = new Task(name);

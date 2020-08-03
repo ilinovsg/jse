@@ -3,8 +3,8 @@ package ru.ilinovsg.tm;
 import ru.ilinovsg.tm.controller.ProjectController;
 import ru.ilinovsg.tm.controller.SystemController;
 import ru.ilinovsg.tm.controller.TaskController;
-import ru.ilinovsg.tm.dao.ProjectRepository;
-import ru.ilinovsg.tm.dao.TaskRepository;
+import ru.ilinovsg.tm.repository.ProjectRepository;
+import ru.ilinovsg.tm.repository.TaskRepository;
 import ru.ilinovsg.tm.service.ProjectService;
 import ru.ilinovsg.tm.service.TaskService;
 

@@ -1,6 +1,6 @@
 package ru.ilinovsg.tm.service;
 
-import ru.ilinovsg.tm.dao.ProjectRepository;
+import ru.ilinovsg.tm.repository.ProjectRepository;
 import ru.ilinovsg.tm.entity.Project;
 
 import java.util.List;

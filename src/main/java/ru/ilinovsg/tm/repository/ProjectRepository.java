@@ -1,14 +1,13 @@
-package ru.ilinovsg.tm.dao;
+package ru.ilinovsg.tm.repository;
 
 import ru.ilinovsg.tm.entity.Project;
-import ru.ilinovsg.tm.entity.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectRepository {
 
-    private List<Project> projects = new ArrayList<>();
+    private final List<Project> projects = new ArrayList<>();
 
     public Project create(final String name) {
         final Project project = new Project(name);

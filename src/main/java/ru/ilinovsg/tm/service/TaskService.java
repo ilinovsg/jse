@@ -1,6 +1,6 @@
 package ru.ilinovsg.tm.service;
 
-import ru.ilinovsg.tm.dao.TaskRepository;
+import ru.ilinovsg.tm.repository.TaskRepository;
 import ru.ilinovsg.tm.entity.Task;
 
 import java.util.List;

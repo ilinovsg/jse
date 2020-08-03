@@ -1,6 +1,5 @@
 package ru.ilinovsg.tm.controller;
 
-import ru.ilinovsg.tm.dao.TaskRepository;
 import ru.ilinovsg.tm.entity.Task;
 import ru.ilinovsg.tm.service.TaskService;
 
