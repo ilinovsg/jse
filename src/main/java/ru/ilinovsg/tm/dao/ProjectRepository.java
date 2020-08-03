@@ -26,7 +26,7 @@ public class ProjectRepository {
 
     public Project update(final Long id, final String name, final String description) {
         final Project project = findById(id);
-        if(project == null) return null;
+        if (project == null) return null;
         project.setId(id);
         project.setName(name);
         project.setDescription(description);
@@ -39,35 +39,35 @@ public class ProjectRepository {
 
     public Project removeByIndex(final int index) {
         final Project project = findByIndex(index);
-        if(project == null) return null;
+        if (project == null) return null;
         projects.remove(project);
         return project;
     }
 
     public Project findByName(final String name) {
-        for(final Project project: projects) {
-            if(project.getName().equals(name)) return project;
+        for (final Project project : projects) {
+            if (project.getName().equals(name)) return project;
         }
         return null;
     }
 
     public Project removeByName(final String name) {
         final Project project = findByName(name);
-        if(project == null) return null;
+        if (project == null) return null;
         projects.remove(project);
         return project;
     }
 
     public Project findById(final Long id) {
-        for(final Project project: projects) {
-            if(project.getId().equals(id)) return project;
+        for (final Project project : projects) {
+            if (project.getId().equals(id)) return project;
         }
         return null;
     }
 
     public Project removeById(final Long id) {
         final Project project = findById(id);
-        if(project == null) return null;
+        if (project == null) return null;
         projects.remove(project);
         return project;
     }
@@ -78,6 +78,10 @@ public class ProjectRepository {
 
     public List<Project> findAll() {
         return projects;
+    }
+
+    public int getSize() {
+        return projects.size();
     }
 
 }

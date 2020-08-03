@@ -18,7 +18,7 @@ public class TaskRepository {
 
     public Task update(final Long id, final String name) {
         final Task task = findById(id);
-        if(task == null) return null;
+        if (task == null) return null;
         task.setId(id);
         task.setName(name);
         return task;
@@ -30,35 +30,35 @@ public class TaskRepository {
 
     public Task removeByIndex(final int index) {
         final Task task = findByIndex(index);
-        if(task == null) return null;
+        if (task == null) return null;
         tasks.remove(task);
         return task;
     }
 
     public Task findByName(final String name) {
-        for(final Task task: tasks) {
-            if(task.getName().equals(name)) return task;
+        for (final Task task : tasks) {
+            if (task.getName().equals(name)) return task;
         }
         return null;
     }
 
     public Task removeByName(final String name) {
         final Task task = findByName(name);
-        if(task == null) return null;
+        if (task == null) return null;
         tasks.remove(task);
         return task;
     }
 
     public Task findById(final Long id) {
-        for(final Task task: tasks) {
-            if(task.getId().equals(id)) return task;
+        for (final Task task : tasks) {
+            if (task.getId().equals(id)) return task;
         }
         return null;
     }
 
     public Task removeById(final Long id) {
         final Task task = findById(id);
-        if(task == null) return null;
+        if (task == null) return null;
         tasks.remove(task);
         return task;
     }
@@ -69,6 +69,10 @@ public class TaskRepository {
 
     public List<Task> findAll() {
         return tasks;
+    }
+
+    public int getSize() {
+        return tasks.size();
     }
 
 }

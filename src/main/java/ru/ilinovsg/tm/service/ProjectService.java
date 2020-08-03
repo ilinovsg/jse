@@ -14,50 +14,50 @@ public class ProjectService {
     }
 
     public Project create(String name) {
-        if(name == null || name.isEmpty()) return null;
+        if (name == null || name.isEmpty()) return null;
         return projectRepository.create(name);
     }
 
     public Project create(String name, String description) {
-        if(name == null || name.isEmpty()) return null;
-        if(description == null || description.isEmpty()) return null;
+        if (name == null || name.isEmpty()) return null;
+        if (description == null || description.isEmpty()) return null;
         return projectRepository.create(name, description);
     }
 
     public Project update(Long id, String name, String description) {
-        if(id == null) return null;
-        if(name == null || name.isEmpty()) return null;
-        if(description == null || description.isEmpty()) return null;
+        if (id == null) return null;
+        if (name == null || name.isEmpty()) return null;
+        if (description == null || description.isEmpty()) return null;
         return projectRepository.update(id, name, description);
     }
 
     public Project findByIndex(int index) {
-        if(index < 0 || index > this.findAll().size() - 1) return null;
+        if (index < 0 || index > projectRepository.getSize() - 1) return null;
         return projectRepository.findByIndex(index);
     }
 
     public Project removeByIndex(int index) {
-        if(index < 0 || index > this.findAll().size() - 1) return null;
+        if (index < 0 || index > projectRepository.getSize() - 1) return null;
         return projectRepository.removeByIndex(index);
     }
 
     public Project findByName(String name) {
-        if(name == null || name.isEmpty()) return null;
+        if (name == null || name.isEmpty()) return null;
         return projectRepository.findByName(name);
     }
 
     public Project removeByName(String name) {
-        if(name == null || name.isEmpty()) return null;
+        if (name == null || name.isEmpty()) return null;
         return projectRepository.removeByName(name);
     }
 
     public Project findById(Long id) {
-        if(id == null) return null;
+        if (id == null) return null;
         return projectRepository.findById(id);
     }
 
     public Project removeById(Long id) {
-        if(id == null) return null;
+        if (id == null) return null;
         return projectRepository.removeById(id);
     }
 
