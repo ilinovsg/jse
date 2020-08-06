@@ -1,7 +1,7 @@
 # Проект Task Manager
 
 # 1. Резервная копия
-https://github.com/ilinovsg/jse-06
+https://github.com/ilinovsg/jse
 
 # 2. Стек технологий 
 - OpenJDK 
