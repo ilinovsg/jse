@@ -3,13 +3,18 @@ package ru.ilinovsg.tm;
 import ru.ilinovsg.tm.controller.ProjectController;
 import ru.ilinovsg.tm.controller.SystemController;
 import ru.ilinovsg.tm.controller.TaskController;
+import ru.ilinovsg.tm.controller.UserController;
 import ru.ilinovsg.tm.entity.Project;
 import ru.ilinovsg.tm.entity.Task;
+import ru.ilinovsg.tm.enumerated.Role;
 import ru.ilinovsg.tm.repository.ProjectRepository;
 import ru.ilinovsg.tm.repository.TaskRepository;
+import ru.ilinovsg.tm.repository.UserRepository;
 import ru.ilinovsg.tm.service.ProjectService;
 import ru.ilinovsg.tm.service.ProjectTaskService;
 import ru.ilinovsg.tm.service.TaskService;
+import ru.ilinovsg.tm.service.UserService;
+import ru.ilinovsg.tm.utils.hashMD5;
 
 import java.util.Scanner;
 
@@ -23,11 +28,16 @@ public class App {
     private final TaskRepository taskRepository = new TaskRepository();
     private final TaskService taskService = new TaskService(taskRepository);
 
+    private final UserRepository userRepository = new UserRepository();
+    private final UserService userService = new UserService(userRepository);
+
     private final ProjectTaskService projectTaskService = new ProjectTaskService(projectRepository, taskRepository);
 
     private final ProjectController projectController = new ProjectController(projectService);
 
     private final TaskController taskController = new TaskController(taskService, projectTaskService);
+
+    private final UserController userController = new UserController(userService);
 
     private final SystemController systemController = new SystemController();
 
@@ -36,6 +46,9 @@ public class App {
         projectRepository.create("PROJECT 2");
         taskRepository.create("TASK 1");
         taskRepository.create("TASK 2");
+
+        userRepository.create("ADMIN", hashMD5.md5("123QWE"), "Ivan", "Ivanov", Role.Admin);
+        userRepository.create("TEST", hashMD5.md5("123"), "Peter", "Petrov", Role.User);
     }
 
     public static void main(final String[] args) {
@@ -125,6 +138,25 @@ public class App {
                 return taskController.listTaskByProjectId();
             case TASK_REMOVE_WITH_PROJECT_BY_ID:
                 return taskController.removeTasksAndProject();
+
+            case USER_CREATE:
+                return userController.createUser();
+            case USER_CLEAR:
+                return userController.clearUser();
+            case USER_LIST:
+                return userController.listUser();
+            case USER_VIEW_BY_ID:
+                return userController.viewUserById();
+            case USER_VIEW_BY_LOGIN:
+                return userController.viewUserByLogin();
+            case USER_UPDATE_BY_ID:
+                return userController.updateUserById();
+            case USER_UPDATE_BY_LOGIN:
+                return userController.updateUserByLogin();
+            case USER_REMOVE_BY_ID:
+                return userController.removeUserById();
+            case USER_REMOVE_BY_LOGIN:
+                return userController.removeUserByLogin();
             default:
                 return systemController.displayError();
         }

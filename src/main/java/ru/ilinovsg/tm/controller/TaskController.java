@@ -156,7 +156,6 @@ public class TaskController extends AbstractController{
             System.out.println(index + "." + task.getId() + " " + task.getName());
             index++;
         }
-
     }
 
      public int listTaskByProjectId() {

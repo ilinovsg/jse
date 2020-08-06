@@ -54,6 +54,17 @@ public class SystemController {
         System.out.println("task-add-to-project-by-ids - Add task to project by ids");
         System.out.println("task-remove-from-project-by-ids - Remove task from project by id");
         System.out.println("task-remove-with-project-by-id - Remove tasks and project by id");
+        System.out.println();
+        System.out.println("user-create - Create new user");
+        System.out.println("user-clear - Remove all users");
+        System.out.println("user-list - Display list of users");
+        System.out.println("user-view-by-id - Display user by id");
+        System.out.println("user-view-by-login - Display user by login");
+        System.out.println("user-update-by-id - Update user by id");
+        System.out.println("user-update-by-login - Update user by login");
+        System.out.println("user-remove-by-id - Remove user by id");
+        System.out.println("user-remove-by-login - Remove user by login");
+
         return 0;
     }
 
